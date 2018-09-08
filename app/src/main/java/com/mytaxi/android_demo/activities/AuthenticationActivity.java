@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.mytaxi.android_demo.App;
 import com.mytaxi.android_demo.R;
 import com.mytaxi.android_demo.dependencies.component.AppComponent;
@@ -25,11 +24,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.inject.Inject;
-
 import static com.mytaxi.android_demo.misc.Constants.LOG_TAG;
 
 public class AuthenticationActivity extends AppCompatActivity {
-
     @Inject
     HttpClient mHttpClient;
 
@@ -38,7 +35,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     private EditText mEditTextUsername;
     private EditText mEditTextPassword;
-
+    Intent myIntent;
     private static final String RANDOM_USER_SEED = "a1f30d446f820665";
 
     public static Intent createIntent(Activity activity) {
@@ -59,6 +56,7 @@ public class AuthenticationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+
             }
         });
     }
@@ -73,6 +71,8 @@ public class AuthenticationActivity extends AppCompatActivity {
                 String sha256 = calculateSHA256(password, mUser.getSalt());
                 if (mUser.match(username, sha256)) {
                     mSharedPrefStorage.saveUser(mUser);
+                    myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(myIntent);
                     finish();
                     Log.i(LOG_TAG, "Successful login with user: " + username);
                 } else {
@@ -83,6 +83,7 @@ public class AuthenticationActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private String calculateSHA256(String password, String salt) {
@@ -96,5 +97,4 @@ public class AuthenticationActivity extends AppCompatActivity {
         }
         return passwordWithSalt;
     }
-
 }

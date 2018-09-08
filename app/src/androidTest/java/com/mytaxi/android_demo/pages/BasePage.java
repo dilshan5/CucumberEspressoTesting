@@ -1,4 +1,4 @@
-package com.mytaxi.android_demo.cucumber.pages;
+package com.mytaxi.android_demo.pages;
 
 
 /**

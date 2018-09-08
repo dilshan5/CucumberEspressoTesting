@@ -1,7 +1,19 @@
 Feature: Login
-    Perform login on email and password are inputted
+    Perform login on userName and password are inputted
 
-    @login-feature
+  Scenario Outline: Input userName and password in wrong format
+   Given I see the login page
+    When I enter userName "<userName>"
+    And I enter passwrod "<password>"
+    And I click Login button
+    Then I should see error message
+
+    Examples:
+        | userName | password  |
+        | test     | lemoncake |
+        | test     |           |
+        |          | password |
+
   Scenario: User can login with valid user name and password
     Given I see the login page
     When I login with user name "crazydog335" and password "venture"

@@ -8,8 +8,8 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        testApplicationId "com.mytaxi.android_demo.cucumber.runner"
-        testInstrumentationRunner "com.mytaxi.android_demo.cucumber.runner.Instrumentation"
+        testApplicationId "com.mytaxi.android_demo.runner"
+        testInstrumentationRunner "com.mytaxi.android_demo.runner.Instrumentation"
     }
     sourceSets {
         androidTest {
@@ -47,4 +47,5 @@ dependencies {
     androidTestCompile 'info.cukes:cucumber-android:1.2.5@jar'
     androidTestCompile 'info.cukes:cucumber-picocontainer:1.2.4'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    compile 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
 }

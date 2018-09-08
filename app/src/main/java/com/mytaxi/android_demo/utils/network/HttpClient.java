@@ -1,6 +1,7 @@
 package com.mytaxi.android_demo.utils.network;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
